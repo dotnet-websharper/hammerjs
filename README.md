@@ -25,7 +25,7 @@ let obj = New [ "direction" => Hammer.DIRECTION_ALL ]
 hammer.Get("pan").Set(obj)
 ```
 
-To add or remove event recognizers from your object, just use the `Add` and `Remove` methods.
+To add or remove event recognizers from your object, just use the `Add` and `Remove` methods. You can pass a string or a Recognizer type (see below) or an array of these one to the `Add` or `Remove` method.
 
 ```
 let pinch = Hammer.Pinch()
@@ -33,6 +33,41 @@ let rotate = Hammer.Rotate()
 let array = [| pinch; rotate |] : Recognizer []
 hammer.Add(arr)
 ```
+
+To set a handler for an event (or even multiple one), just use the `On` method (to remove the `Off` ) on your `Hammer` object.
+
+```
+hammer.On("panleft panright", fun (ev) ->
+	Console.Log(ev.Type)
+)
+```
+
+## Recognizers
+
+The In-built recognizers:
+
+* [Pan][link1]
+* [Pinch][link2]
+* [Press][link3]
+* [Rotate][link4]
+* [Swipe][link5]
+* [Tap][link6]
+
+You can build new events based on these, like:
+
+```
+let obj = 
+	New [ 
+		"event" => "quadrupletap"
+		"taps" => 4
+	]
+let quadrupletap = Hammer.Tap(obj)
+```
+
+To change the behaviour of the event, use the `Set` method. You have the option, to choose for every event, which one should be failed to trigger the event, and which one required to be happen before the event triggers. To do so, just use the `RequireFailure` and `RequireWith` methods. To drop this dependencies use the `dropRequireFailure` and `dropRequireWith`.
+
+```
+``` 
 
 ## Manager
 
@@ -45,11 +80,12 @@ let manager = Hammer.Manager(cont.Dom)
 
 You can use the same methods, that you can use on your Hammer object.
 
-## Adding custom events
-
-
-
-
 [hammerjs]: http://hammerjs.github.io/
 [browsersupp]: http://hammerjs.github.io/browser-support/
+[link1]: http://hammerjs.github.io/recognizer-pan/
+[link2]: http://hammerjs.github.io/recognizer-pinch/
+[link3]: http://hammerjs.github.io/recognizer-press/
+[link4]: http://hammerjs.github.io/recognizer-rotate/
+[link5]: http://hammerjs.github.io/recognizer-swipe/
+[link6]: http://hammerjs.github.io/recognizer-tap/
 
