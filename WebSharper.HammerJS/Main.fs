@@ -48,8 +48,8 @@ module Definition =
         Class "Recognizer"
             |+> Instance [
                 "set" => Obj ^-> O
-                "recogniseWith" => Obj ^-> O
-                "dropRecogniseWith" => Obj ^-> O
+                "recognizeWith" => Obj ^-> O
+                "dropRecognizeWith" => Obj ^-> O
                 "requireFailure" => Obj ^-> O
                 "dropRequireFailure" => Obj ^-> O
             ]

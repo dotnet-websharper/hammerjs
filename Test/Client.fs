@@ -34,6 +34,16 @@ module Client =
 
         hammer.Add(a)
 
+        hammer.Add(
+            Hammer.Tap (
+                New [ 
+                    "event" => "doubletap"
+                    "taps" => 2
+                ]))
+        hammer.Add(Hammer.Tap(New [ "event" => "singletap"]))
+        hammer.Get("doubletap").RecognizeWith("singletap")
+        hammer.Get("singletap").RequireFailure("doubletap")
+
 //        hammer.Get("swipe").Set(obj)
 
 //        let pinch = Hammer.Pinch()
@@ -43,10 +53,9 @@ module Client =
 //
 //        hammer.Add(a)
 
-        hammer.On("swipeleft", fun ev ->
+        hammer.On("swipeleft singletap doubletap", fun ev ->
                 DocExtensions.Clear(cont)
                 let b = div [text ev.Type]
-                Console.Log(ev.Detail)
                 cont.Dom.AppendChild(b.Dom) |> ignore
             )
 

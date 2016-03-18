@@ -17095,34 +17095,39 @@ var JSON;JSON||(JSON={}),function(){"use strict";function i(n){return n<10?"0"+n
 ;
 (function()
 {
- var Global=this,Runtime=this.IntelliFactory.Runtime,List,UI,Next,AttrProxy,T,Doc,Hammer,console,Test,Client;
+ var Global=this,Runtime=this.IntelliFactory.Runtime,List,UI,Next,AttrProxy,T,Doc,Hammer,Test,Client;
  Runtime.Define(Global,{
   Test:{
    Client:{
     Main:Runtime.Field(function()
     {
-     var ats,arg20,cont,hammer;
+     var ats,arg20,cont,hammer,obj,a;
      ats=List.ofArray([AttrProxy.Create("style","background : silver; height : 300px; text-align: center; font: 30px/300px Helvetica, Arial, sans-serif;")]);
      arg20=Runtime.New(T,{
       $:0
      });
      cont=Doc.Element("div",ats,arg20);
      hammer=new Hammer.Manager(cont.elt);
-     hammer.add(new Hammer.Swipe({
+     obj={
       direction:Hammer.DIRECTION_ALL
+     };
+     a=new Hammer.Swipe(obj);
+     hammer.add(a);
+     hammer.add(new Hammer.Tap({
+      event:"doubletap",
+      taps:2
      }));
-     hammer.on("swipeleft",function(ev)
+     hammer.add(new Hammer.Tap({
+      event:"singletap"
+     }));
+     hammer.get("doubletap").recognizeWith("singletap");
+     hammer.get("singletap").requireFailure("doubletap");
+     hammer.on("swipeleft singletap doubletap",function(ev)
      {
-      var arg201,b,a;
+      var arg201;
       cont.Clear();
       arg201=List.ofArray([Doc.TextNode(ev.type)]);
-      b=Doc.Element("div",[],arg201);
-      a=ev.detail;
-      if(console)
-       {
-        console.log(a);
-       }
-      cont.elt.appendChild(b.elt);
+      cont.elt.appendChild(Doc.Element("div",[],arg201).elt);
       return;
      });
      return Doc.RunById("main",cont);
@@ -17139,7 +17144,6 @@ var JSON;JSON||(JSON={}),function(){"use strict";function i(n){return n<10?"0"+n
   T=Runtime.Safe(List.T);
   Doc=Runtime.Safe(Next.Doc);
   Hammer=Runtime.Safe(Global.Hammer);
-  console=Runtime.Safe(Global.console);
   Test=Runtime.Safe(Global.Test);
   return Client=Runtime.Safe(Test.Client);
  });

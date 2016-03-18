@@ -64,9 +64,18 @@ let obj =
 let quadrupletap = Hammer.Tap(obj)
 ```
 
-To change the behaviour of the event, use the `Set` method. You have the option, to choose for every event, which one should be failed to trigger the event, and which one required to be happen before the event triggers. To do so, just use the `RequireFailure` and `RequireWith` methods. To drop this dependencies use the `dropRequireFailure` and `dropRequireWith`.
+To change the behaviour of the event, use the `Set` method. You have the option, to choose for every event, which one should be failed to trigger the event, and which one required to be happen before the event triggers. To do so, just use the `RequireFailure` and `RecognizeWith` methods. To drop this dependencies use the `dropRequireFailure` and `dropRecognizeWith`.
 
 ```
+hammer.Add(
+    Hammer.Tap (
+        New [ 
+            "event" => "doubletap"
+            "taps" => 2
+        ]))
+hammer.Add(Hammer.Tap(New [ "event" => "singletap"]))
+hammer.Get("doubletap").RecognizeWith("singletap")
+hammer.Get("singletap").RequireFailure("doubletap")
 ``` 
 
 ## Manager
