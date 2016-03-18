@@ -2,8 +2,8 @@ syntax: glob
 
 .vs/
 *.suo
-*.Tests/Scripts/WebSharper/
-*.Tests/Content/WebSharper/
+Test/Scripts/WebSharper/
+Test/Content/WebSharper/
 build/
 */bin/
 */obj/

@@ -2,25 +2,22 @@
 open IntelliFactory.Build
 
 let bt =
-    BuildTool().PackageId("WebSharper.Hammer")
+    BuildTool().PackageId("WebSharper.HammerJS")
         .VersionFrom("WebSharper")
         .WithFSharpVersion(FSharpVersion.FSharp30)
         .WithFramework(fun f -> f.Net40)
 
 let main =
-    bt.WebSharper.Extension("WebSharper.Hammer")
+    bt.WebSharper.Extension("WebSharper.HammerJS")
         .SourcesFromProject()
-        .Embed([])
-        .References(fun r -> [])
 
 let tests =
-    bt.WebSharper.SiteletWebsite("WebSharper.Hammer.Test")
+    bt.WebSharper.SiteletWebsite("Test")
         .SourcesFromProject()
-        .Embed([])
         .References(fun r ->
             [
-                r.Project(main)
                 r.NuGet("WebSharper.UI.Next").Reference()
+                r.Project(main)
             ])
 
 bt.Solution [
@@ -28,6 +25,7 @@ bt.Solution [
     tests
 
     bt.NuGet.CreatePackage()
+        .Add(main)
         .Configure(fun c ->
             { c with
                 Title = Some "WebSharper.Hammer"
@@ -35,6 +33,5 @@ bt.Solution [
                 ProjectUrl = Some "https://bitbucket.com/intellifactory/hammerjs"
                 Description = "WebSharper Extensions for Hammer.js"
                 RequiresLicenseAcceptance = true })
-        .Add(main)
 ]
 |> bt.Dispatch

@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebSharper.HammerJS", "WebSharper.HammerJS\WebSharper.HammerJS.fsproj", "{EB192EE5-60E6-41B2-BA1C-E132235F6FF8}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Test", "Test\Test.fsproj", "{8FAB3CCA-899F-434D-B4FF-BFAD76E0AE26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7BCA129-6A11-4A70-AF2F-AF7D5F68CF90}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB192EE5-60E6-41B2-BA1C-E132235F6FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB192EE5-60E6-41B2-BA1C-E132235F6FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB192EE5-60E6-41B2-BA1C-E132235F6FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB192EE5-60E6-41B2-BA1C-E132235F6FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FAB3CCA-899F-434D-B4FF-BFAD76E0AE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FAB3CCA-899F-434D-B4FF-BFAD76E0AE26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FAB3CCA-899F-434D-B4FF-BFAD76E0AE26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FAB3CCA-899F-434D-B4FF-BFAD76E0AE26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

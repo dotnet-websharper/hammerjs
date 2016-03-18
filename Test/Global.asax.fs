@@ -1,4 +1,4 @@
-namespace WebSharper.Hammer.Tests
+namespace Test
 
 type Global() =
     inherit System.Web.HttpApplication()
