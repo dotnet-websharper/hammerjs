@@ -19,7 +19,7 @@ module Client =
         let d1 =
             divAttr
                 [
-                    attr.style "background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;"
+                    attr.style "background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;"
                 ]
                 []
 
@@ -34,7 +34,7 @@ module Client =
         let d2 =
             divAttr
                 [
-                    attr.style "background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;"
+                    attr.style "background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;"
                 ]
                 []
 
@@ -56,7 +56,7 @@ module Client =
         let d3 =
             divAttr
                 [
-                    attr.style "background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;"
+                    attr.style "background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;"
                 ]
                 []
 
@@ -68,6 +68,8 @@ module Client =
         hammer3.Add(Hammer.Tap(TapConf(Event = "singletap")))
         hammer3.Get("doubletap").RecognizeWith("singletap")
         hammer3.Get("singletap").RequireFailure("doubletap")
+
+        hammer3.Add(Hammer.Pan(PanConf(Direction=Hammer.DIRECTION_ALL)))
 
         hammer3.On("singletap doubletap panleft panright press", fun ev ->
                 DocExtensions.Clear(d3)

@@ -17102,7 +17102,7 @@ var JSON;JSON||(JSON={}),function(){"use strict";function i(n){return n<10?"0"+n
     Main:Runtime.Field(function()
     {
      var ats,arg20,d1,hammer1,ats1,arg202,d2,hammer2,cfg,ats2,arg203,d3,hammer3,arg204,arg205,arg206;
-     ats=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;")]);
+     ats=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;")]);
      arg20=Runtime.New(T,{
       $:0
      });
@@ -17116,7 +17116,7 @@ var JSON;JSON||(JSON={}),function(){"use strict";function i(n){return n<10?"0"+n
       d1.elt.appendChild(Doc.Element("div",[],arg201).elt);
       return;
      });
-     ats1=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;")]);
+     ats1=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;")]);
      arg202=Runtime.New(T,{
       $:0
      });
@@ -17134,7 +17134,7 @@ var JSON;JSON||(JSON={}),function(){"use strict";function i(n){return n<10?"0"+n
       d2.elt.appendChild(Doc.Element("div",[],arg201).elt);
       return;
      });
-     ats2=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;")]);
+     ats2=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;")]);
      arg203=Runtime.New(T,{
       $:0
      });
@@ -17149,6 +17149,9 @@ var JSON;JSON||(JSON={}),function(){"use strict";function i(n){return n<10?"0"+n
      }));
      hammer3.get("doubletap").recognizeWith("singletap");
      hammer3.get("singletap").requireFailure("doubletap");
+     hammer3.add(new Hammer.Pan({
+      direction:Hammer.DIRECTION_ALL
+     }));
      hammer3.on("singletap doubletap panleft panright press",function(ev)
      {
       var arg201;

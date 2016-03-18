@@ -33,10 +33,12 @@ module Definition =
     let Recognizer =
         Class "Recognizer"
             |+> Instance [
-                "recognizeWith" => Obj ^-> O
-                "dropRecognizeWith" => Obj ^-> O
-                "requireFailure" => Obj ^-> O
-                "dropRequireFailure" => Obj ^-> O
+                Generic - fun t1 ->
+                    "set" => t1 ^-> O
+                "recognizeWith" => String ^-> O
+                "dropRecognizeWith" => String ^-> O
+                "requireFailure" => String ^-> O
+                "dropRequireFailure" => String ^-> O
             ]
         |>! addToClassList
 
