@@ -17,7 +17,7 @@ let hammer = Hammer(cont.dom)
 
 Now this element will be able to sense the new event types, and will have the default presets, which is defined in the `Hammer.defaults`.
 
-To modify the existing options, just use the `Get` and the `Set` method on your `Hammer` object.
+To modify the existing options, just use the `Get` method on your `Hammer` object, which returns a `Recognizer` type. Call the `Set` on this one, to change the settings for the event.
 
 ```
 // Get the pan element, and set it's direction to all
