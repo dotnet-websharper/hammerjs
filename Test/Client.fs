@@ -13,50 +13,78 @@ open WebSharper.HammerJS
 module Client =    
    
     let Main =
-        let cont =
+
+        // Simple Hammer
+
+        let d1 =
             divAttr
                 [
-                    attr.style "background : silver; height : 300px; text-align: center; font: 30px/300px Helvetica, Arial, sans-serif;"
+                    attr.style "background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;"
                 ]
                 []
 
-        let hammer = Hammer.Manager(cont.Dom)
+        let hammer1 = Hammer(d1.Dom)
 
-        let obj = 
-            New 
-                [
-                    "direction" => Hammer.DIRECTION_ALL           
-                ]
-        
-//        hammer.Get("pan").Set(obj)
-        
-        let a = Hammer.Swipe(obj)
-
-        hammer.Add(a)
-
-        hammer.Add(
-            Hammer.Tap (
-                New [ 
-                    "event" => "doubletap"
-                    "taps" => 2
-                ]))
-        hammer.Add(Hammer.Tap(New [ "event" => "singletap"]))
-        hammer.Get("doubletap").RecognizeWith("singletap")
-        hammer.Get("singletap").RequireFailure("doubletap")
-
-//        hammer.Get("swipe").Set(obj)
-
-//        let pinch = Hammer.Pinch()
-//        let rotate = Hammer.Rotate()
-//
-//        let a = [| pinch; rotate |] : Recognizer []
-//
-//        hammer.Add(a)
-
-        hammer.On("swipeleft singletap doubletap", fun ev ->
-                DocExtensions.Clear(cont)
-                let b = div [text ev.Type]
-                cont.Dom.AppendChild(b.Dom) |> ignore
+        hammer1.On("panleft panright tap press", fun ev ->
+                DocExtensions.Clear(d1)
+                let b = div [text (ev.Type + "gesture detected")]
+                d1.Dom.AppendChild(b.Dom) |> ignore
             )
+
+        let d2 =
+            divAttr
+                [
+                    attr.style "background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;"
+                ]
+                []
+
+        // Swipe
+
+        let hammer2 = Hammer.Manager(d2.Dom)
+
+
+        let cfg = SwipeConf(Direction = Hammer.DIRECTION_ALL)
+        
+        hammer2.Add(Hammer.Swipe(cfg))
+
+        hammer2.On("swipeleft swiperight swipeup swipedown panleft panright tap press", fun ev ->
+                DocExtensions.Clear(d2)
+                let b = div [text (ev.Type + "gesture detected")]
+                d2.Dom.AppendChild(b.Dom) |> ignore
+            )
+
+        let d3 =
+            divAttr
+                [
+                    attr.style "background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;"
+                ]
+                []
+
+        // Single vs Double
+
+        let hammer3 = Hammer.Manager(d3.Dom)
+
+        hammer3.Add(Hammer.Tap(TapConf(Event = "doubletap", Taps = 2)))
+        hammer3.Add(Hammer.Tap(TapConf(Event = "singletap")))
+        hammer3.Get("doubletap").RecognizeWith("singletap")
+        hammer3.Get("singletap").RequireFailure("doubletap")
+
+        hammer3.On("singletap doubletap panleft panright press", fun ev ->
+                DocExtensions.Clear(d3)
+                let b = div [text (ev.Type + "gesture detected")]
+                d3.Dom.AppendChild(b.Dom) |> ignore
+            )
+
+        let cont =
+            divAttr
+                []
+                [
+                    h2 [text "Simple hammer class"]
+                    d1
+                    h2 [text "This one only detects swipe"]
+                    d2
+                    h2 [text "Doubletap will not trigger singletap"] 
+                    d3
+                ]
 
         cont |> Doc.RunById "main"

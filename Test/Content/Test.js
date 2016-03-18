@@ -17101,36 +17101,68 @@ var JSON;JSON||(JSON={}),function(){"use strict";function i(n){return n<10?"0"+n
    Client:{
     Main:Runtime.Field(function()
     {
-     var ats,arg20,cont,hammer,obj,a;
-     ats=List.ofArray([AttrProxy.Create("style","background : silver; height : 300px; text-align: center; font: 30px/300px Helvetica, Arial, sans-serif;")]);
+     var ats,arg20,d1,hammer1,ats1,arg202,d2,hammer2,cfg,ats2,arg203,d3,hammer3,arg204,arg205,arg206;
+     ats=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;")]);
      arg20=Runtime.New(T,{
       $:0
      });
-     cont=Doc.Element("div",ats,arg20);
-     hammer=new Hammer.Manager(cont.elt);
-     obj={
+     d1=Doc.Element("div",ats,arg20);
+     hammer1=new Hammer(d1.elt);
+     hammer1.on("panleft panright tap press",function(ev)
+     {
+      var arg201;
+      d1.Clear();
+      arg201=List.ofArray([Doc.TextNode(ev.type+"gesture detected")]);
+      d1.elt.appendChild(Doc.Element("div",[],arg201).elt);
+      return;
+     });
+     ats1=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;")]);
+     arg202=Runtime.New(T,{
+      $:0
+     });
+     d2=Doc.Element("div",ats1,arg202);
+     hammer2=new Hammer.Manager(d2.elt);
+     cfg={
       direction:Hammer.DIRECTION_ALL
      };
-     a=new Hammer.Swipe(obj);
-     hammer.add(a);
-     hammer.add(new Hammer.Tap({
+     hammer2.add(new Hammer.Swipe(cfg));
+     hammer2.on("swipeleft swiperight swipeup swipedown panleft panright tap press",function(ev)
+     {
+      var arg201;
+      d2.Clear();
+      arg201=List.ofArray([Doc.TextNode(ev.type+"gesture detected")]);
+      d2.elt.appendChild(Doc.Element("div",[],arg201).elt);
+      return;
+     });
+     ats2=List.ofArray([AttrProxy.Create("style","background : silver; height : 150px; text-align: center; font: 30px/150px Helvetica, Arial, sans-serif;")]);
+     arg203=Runtime.New(T,{
+      $:0
+     });
+     d3=Doc.Element("div",ats2,arg203);
+     hammer3=new Hammer.Manager(d3.elt);
+     hammer3.add(new Hammer.Tap({
       event:"doubletap",
       taps:2
      }));
-     hammer.add(new Hammer.Tap({
+     hammer3.add(new Hammer.Tap({
       event:"singletap"
      }));
-     hammer.get("doubletap").recognizeWith("singletap");
-     hammer.get("singletap").requireFailure("doubletap");
-     hammer.on("swipeleft singletap doubletap",function(ev)
+     hammer3.get("doubletap").recognizeWith("singletap");
+     hammer3.get("singletap").requireFailure("doubletap");
+     hammer3.on("singletap doubletap panleft panright press",function(ev)
      {
       var arg201;
-      cont.Clear();
-      arg201=List.ofArray([Doc.TextNode(ev.type)]);
-      cont.elt.appendChild(Doc.Element("div",[],arg201).elt);
+      d3.Clear();
+      arg201=List.ofArray([Doc.TextNode(ev.type+"gesture detected")]);
+      d3.elt.appendChild(Doc.Element("div",[],arg201).elt);
       return;
      });
-     return Doc.RunById("main",cont);
+     arg204=List.ofArray([Doc.TextNode("Simple hammer class")]);
+     arg205=List.ofArray([Doc.TextNode("This one only detects swipe")]);
+     arg206=List.ofArray([Doc.TextNode("Doubletap will not trigger singletap")]);
+     return Doc.RunById("main",Doc.Element("div",Runtime.New(T,{
+      $:0
+     }),List.ofArray([Doc.Element("h2",[],arg204),d1,Doc.Element("h2",[],arg205),d2,Doc.Element("h2",[],arg206),d3])));
     })
    }
   }

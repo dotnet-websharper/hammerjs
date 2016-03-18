@@ -56,26 +56,19 @@ The In-built recognizers:
 You can build new events based on these, like:
 
 ```
-let obj = 
-	New [ 
-		"event" => "quadrupletap"
-		"taps" => 4
-	]
+let obj = TapConf(Event = "quadrupletap", Taps = 4)
 let quadrupletap = Hammer.Tap(obj)
 ```
+
+Every Recognizer type has it's own config pattern (like SwipeConf, TapConf, etc...). These don't have required attributes, just optional ones, which are the same as you can see in the links above. (Just start every attributes with capitalized letter)
 
 To change the behaviour of the event, use the `Set` method. You have the option, to choose for every event, which one should be failed to trigger the event, and which one required to be happen before the event triggers. To do so, just use the `RequireFailure` and `RecognizeWith` methods. To drop this dependencies use the `dropRequireFailure` and `dropRecognizeWith`.
 
 ```
-hammer.Add(
-    Hammer.Tap (
-        New [ 
-            "event" => "doubletap"
-            "taps" => 2
-        ]))
-hammer.Add(Hammer.Tap(New [ "event" => "singletap"]))
-hammer.Get("doubletap").RecognizeWith("singletap")
-hammer.Get("singletap").RequireFailure("doubletap")
+hammer3.Add(Hammer.Tap(TapConf(Event = "doubletap", Taps = 2)))
+hammer3.Add(Hammer.Tap(TapConf(Event = "singletap")))
+hammer3.Get("doubletap").RecognizeWith("singletap")
+hammer3.Get("singletap").RequireFailure("doubletap")
 ``` 
 
 ## Manager
@@ -97,4 +90,3 @@ You can use the same methods, that you can use on your Hammer object.
 [link4]: http://hammerjs.github.io/recognizer-rotate/
 [link5]: http://hammerjs.github.io/recognizer-swipe/
 [link6]: http://hammerjs.github.io/recognizer-tap/
-

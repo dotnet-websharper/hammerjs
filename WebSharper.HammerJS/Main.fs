@@ -25,29 +25,14 @@ module Definition =
     let Error = T<exn>
     let ( !| ) x = Type.ArrayOf x
     let Int = T<int>
+    let Float = T<float>
 
     let Element = T<Element>
     let Event = T<Event>
-
-    let Options =
-        Pattern.Config "Options"
-            {
-                Required = []
-                Optional = 
-                    [
-                        "touchAction", String
-                        "domEvents", Bool
-                        "enable", Bool
-                        "cssProps", Obj
-                        "preset", !|Obj
-                    ]
-            }
-        |>! addToClassList
     
     let Recognizer =
         Class "Recognizer"
             |+> Instance [
-                "set" => Obj ^-> O
                 "recognizeWith" => Obj ^-> O
                 "dropRecognizeWith" => Obj ^-> O
                 "requireFailure" => Obj ^-> O
@@ -55,46 +40,151 @@ module Definition =
             ]
         |>! addToClassList
 
+    let PanConf =
+        Pattern.Config "PanConf"
+            {
+                Required = []
+                Optional = 
+                    [
+                        "event", String
+                        "pointers", Int
+                        "treshold", Int
+                        "direction", Int
+                    ]
+            }
+        |>! addToClassList
+
+    let PinchConf =
+        Pattern.Config "PinchConf"
+            {
+                Required = []
+                Optional =
+                    [
+                        "event", String
+                        "pointers", Int
+                        "treshold", Int
+                    ]
+            }
+        |>! addToClassList
+
+    let PressConf =
+        Pattern.Config "PressConf"
+            {
+                Required = []
+                Optional =
+                    [
+                        "event", String
+                        "pointers", Int
+                        "treshold", Int
+                        "time", Int
+                    ]
+            }
+        |>! addToClassList
+
+    let RotateConf =
+        Pattern.Config "RotateConf"
+            {
+                Required = []
+                Optional =
+                    [
+                        "event", String
+                        "pointers", Int
+                        "treshold", Int
+                    ]
+            }
+        |>! addToClassList
+
+    let SwipeConf =
+        Pattern.Config "SwipeConf"
+            {
+                Required = []
+                Optional =
+                    [
+                        "event", String
+                        "pointers", Int
+                        "treshold", Int
+                        "direction", Int
+                        "velocity", Float
+                    ]
+            }
+        |>! addToClassList
+
+    let TapConf =
+        Pattern.Config "TapConf"
+            {
+                Required = []
+                Optional =
+                    [
+                        "event", String
+                        "pointers", Int
+                        "treshold", Int
+                        "taps", Int
+                        "posTreshold", Int
+                        "time", Int
+                        "interval", Int
+                    ]
+            }
+        |>! addToClassList
+        
+
     let Pan = 
         Class "Hammer.Pan"
             |=> Inherits Recognizer
             |+> Static [
-                Constructor (O + Obj)
+                Constructor (O + PanConf)
+            ]
+            |+> Instance [
+                "set" => PanConf ^-> O
             ]
 
     let Pinch =
         Class "Hammer.Pinch"
             |=> Inherits Recognizer
             |+> Static [
-                Constructor (O + Obj)
+                Constructor (O + PinchConf)
+            ]
+            |+> Instance [
+                "set" => PinchConf ^-> O
             ]
 
     let Press =
         Class "Hammer.Press"
             |=> Inherits Recognizer
             |+> Static [
-                Constructor (O + Obj)
+                Constructor (O + PressConf)
+            ]
+            |+> Instance [
+                "set" => PressConf ^-> O
             ]
 
     let Rotate =
         Class "Hammer.Rotate"
             |=> Inherits Recognizer
             |+> Static [
-                Constructor (O + Obj)
+                Constructor (RotateConf + O)
+            ]
+            |+> Instance [
+                "set" => RotateConf ^-> O
             ]
 
     let Swipe =
         Class "Hammer.Swipe"
             |=> Inherits Recognizer
             |+> Static [
-                Constructor (O + Obj)
+                Constructor (O + SwipeConf)
+            ]
+            |+> Instance [
+                "set" => SwipeConf ^-> O
             ]
             
     let Tap =
         Class "Hammer.Tap"
             |=> Inherits Recognizer
             |+> Static [
-                Constructor (O + Obj)
+                Constructor (O + TapConf)
+            ]
+            |+> Instance [
+                "set" => TapConf ^-> O
             ]
 
     let Hammer = 
@@ -123,7 +213,6 @@ module Definition =
             "DIRECTION_HORIZONTAL" =? Int
         ]
         |+> Instance [
-            "set" => Obj ^-> O
             "get" => String ^-> Recognizer
             "remove" => ( Obj + String + !|(Obj + String)) ^-> O
             "add" => (Recognizer + String + !|Recognizer + !|String) ^-> O
@@ -149,7 +238,6 @@ module Definition =
                 Constructor Element
             ]
             |+> Instance [
-                "set" => Options ^-> O
                 "get" => String ^-> Recognizer
                 "add" => (Recognizer + String + !|(Recognizer + String)) ^-> O
                 "remove" => ( Obj + String + !|(Obj + String)) ^-> O
