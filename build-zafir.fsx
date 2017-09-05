@@ -2,21 +2,21 @@
 open IntelliFactory.Build
 
 let bt =
-    BuildTool().PackageId("Zafir.HammerJS")
-        .VersionFrom("Zafir")
+    BuildTool().PackageId("WebSharper.HammerJS")
+        .VersionFrom("WebSharper")
         .WithFSharpVersion(FSharpVersion.FSharp30)
         .WithFramework(fun f -> f.Net40)
 
 let main =
-    bt.Zafir.Extension("WebSharper.HammerJS")
+    bt.WebSharper4.Extension("WebSharper.HammerJS")
         .SourcesFromProject()
 
 let tests =
-    bt.Zafir.SiteletWebsite("Test")
+    bt.WebSharper4.SiteletWebsite("Test")
         .SourcesFromProject()
         .References(fun r ->
             [
-                r.NuGet("Zafir.UI.Next").Latest(true).ForceFoundVersion().Reference()
+                r.NuGet("WebSharper.UI.Next").Latest(true).ForceFoundVersion().Reference()
                 r.Project(main)
             ])
 

@@ -3,7 +3,7 @@ open IntelliFactory.Build
 
 let bt =
     BuildTool().PackageId("WebSharper.HammerJS")
-        .VersionFrom("WebSharper")
+        .VersionFrom("WebSharper", versionSpec = "(,4.0)")
         .WithFSharpVersion(FSharpVersion.FSharp30)
         .WithFramework(fun f -> f.Net40)
 
@@ -16,7 +16,7 @@ let tests =
         .SourcesFromProject()
         .References(fun r ->
             [
-                r.NuGet("WebSharper.UI.Next").Reference()
+                r.NuGet("WebSharper.UI.Next").Version("(,4.0)").Reference()
                 r.Project(main)
             ])
 
