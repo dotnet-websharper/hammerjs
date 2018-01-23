@@ -2,10 +2,12 @@ syntax: glob
 
 .vs/
 *.suo
-Test/Scripts/WebSharper/
-Test/Content/WebSharper/
+Test/Content/
 build/
 */bin/
 */obj/
 packages/
 tools/packages/
+.fake/
+.vscode/
+paket-files/

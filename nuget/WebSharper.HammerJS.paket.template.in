@@ -1,0 +1,19 @@
+type file
+id WebSharper.HammerJS
+authors
+    IntelliFactory
+owners
+    IntelliFactory
+licenseUrl http://websharper.com/licensing
+projectUrl https://bitbucket.com/intellifactory/hammerjs
+description
+    WebSharper Extensions for Hammer.js
+tags
+    Web JavaScript F# C#
+files
+    ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.dll ==> lib/net461
+    ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.xml ==> lib/net461
+    ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.dll ==> lib/netstandard2.0
+    ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.xml ==> lib/netstandard2.0
+dependencies
+        WebSharper ~> LOCKEDVERSION/3
