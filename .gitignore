@@ -1,5 +1,3 @@
-syntax: glob
-
 .vs/
 *.suo
 Test/Content/
