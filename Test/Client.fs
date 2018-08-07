@@ -17,7 +17,7 @@ module Client =
         // Simple Hammer
 
         let d1 =
-            div
+            Elt.div
                 [
                     attr.style "background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;"
                 ]
@@ -27,12 +27,12 @@ module Client =
 
         hammer1.On("panleft panright tap press", fun ev ->
                 DocExtensions.Clear(d1)
-                let b = div [] [text (ev.Type + "gesture detected")]
+                let b = Elt.div [] [text (ev.Type + "gesture detected")]
                 d1.Dom.AppendChild(b.Dom) |> ignore
             )
 
         let d2 =
-            div
+            Elt.div
                 [
                     attr.style "background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;"
                 ]
@@ -49,12 +49,12 @@ module Client =
 
         hammer2.On("swipeleft swiperight swipeup swipedown panleft panright tap press", fun ev ->
                 DocExtensions.Clear(d2)
-                let b = div [] [text (ev.Type + "gesture detected")]
+                let b = Elt.div [] [text (ev.Type + "gesture detected")]
                 d2.Dom.AppendChild(b.Dom) |> ignore
             )
 
         let d3 =
-            div
+            Elt.div
                 [
                     attr.style "background : silver; height : 150px; text-align: center; font: 15px/150px Helvetica, Arial, sans-serif;"
                 ]
@@ -73,7 +73,7 @@ module Client =
 
         hammer3.On("singletap doubletap panleft panright press", fun ev ->
                 DocExtensions.Clear(d3)
-                let b = div [] [text (ev.Type + "gesture detected")]
+                let b = Elt.div [] [text (ev.Type + "gesture detected")]
                 d3.Dom.AppendChild(b.Dom) |> ignore
             )
 
