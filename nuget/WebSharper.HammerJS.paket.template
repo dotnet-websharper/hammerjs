@@ -16,4 +16,4 @@ files
     ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.dll ==> lib/netstandard2.0
     ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.xml ==> lib/netstandard2.0
 dependencies
-        WebSharper ~> 4.6.2
+        WebSharper ~> 4.6.4
