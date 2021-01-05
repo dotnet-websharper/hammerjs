@@ -11,9 +11,8 @@ description
 tags
     Web JavaScript F# C#
 files
-    ../WebSharper.HammerJS/bin/Release/net461/WebSharper.HammerJS.dll ==> lib/net461
-    ../WebSharper.HammerJS/bin/Release/net461/WebSharper.HammerJS.xml ==> lib/net461
     ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.dll ==> lib/netstandard2.0
     ../WebSharper.HammerJS/bin/Release/netstandard2.0/WebSharper.HammerJS.xml ==> lib/netstandard2.0
 dependencies
-        WebSharper ~> LOCKEDVERSION:[3]
+    framework: netstandard2.0
+            WebSharper ~> LOCKEDVERSION:[3]
